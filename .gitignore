@@ -6,3 +6,4 @@ dist/
 .DS_Store/
 datos/
 .DS_Store
+node_modules
