@@ -1,7 +1,9 @@
-FROM alpine
-EXPOSE 80
-RUN apk add nginx
-COPY ./ordinario-ftw /var/lib/nginx/html
-COPY ./hiram.conf /etc/nginx/http.d/default.conf
+FROM rrojano/spring-boot
+WORKDIR /app
 
-CMD [ "nginx", "-g", "daemon off;"]
+COPY SaludarDatos/pom.xml .
+COPY SaludarDatos/src  ./src
+
+RUN mvn package -DskipTests
+
+CMD ["java", "jar", "target/SaludarDatos-0.0.1-SNAPSHOT.jar"]
